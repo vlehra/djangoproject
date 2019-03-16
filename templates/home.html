@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="row">
+        <div style="color: blue">
+          
+            <h1>Feedback form !!</h1>
+            
+
+          </div>
+        </div>
+      </div><br/>
+      
+
+    <div class ="col-md-5">
+      <div style="text-align:right; width:100%; padding:0;">
+
+      <form method="POST"  action="{{ get_absolute_url }}" >
+      {% csrf_token %}
+      {{ error }}
+      {{ form|crispy }}
+ 
+
+  
+
+      <input class="btn btn-success" type="submit" value="SAVE"/>
+  
+
+
+      </form>
+    </div>
+    </div>
+  </div>
+</div>
+<div style="text-align:left; width:100%; padding:0;">
+<br/>
+{% if user.is_authenticated %}
+{% for i in ob reversed %} 
+   
+  {% if  i.name  %}
+    <h6>{{ i.name }}</h6>
+
+<div class="container">
+  <div class="row">
+    <div class="col"><td>Mobile Number:       </td>
+              <td>{{ i.mobile_number }}</td></div>
+   ]
+</div>
+ <div class="w-100"></div>
+  <div class="col"><td>Suggestion:     </td>
+              <td>{{ i.suggestions }}</td>
+            </div>
+              
+
+                        
+
+ <br/><br/>
+{% endif %}
+ 
+ {% endfor %}
+ {% endif %}
+
+{% endblock %}

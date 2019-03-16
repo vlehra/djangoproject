@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{%block title %} Add Menu-Swastik {% endblock %} 
+{% load static %}
+
+{% block content %}
+<h1>ADD MENU !!</h1>
+<br/>
+{{ error }}
+<br/>
+<form method="POST" action="{% url 'add_particulars' %}" >
+{% csrf_token %}
+ {{ form.as_p }}
+	
+
+	
+	
+	<input class="btn btn-success" type="submit" value="SAVE"/>
+
+
+</form>
+{% endblock %}

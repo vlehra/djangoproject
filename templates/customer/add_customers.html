@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{%block title %} Add Customers-Swastik {% endblock %} 
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<h1>New Customer</h1>
+<br/>
+{{ error }}
+<br/>
+<form method="POST" action="{% url 'add_customers' %}" >
+ {% csrf_token %}
+ 
+ {{ form|crispy }}
+	
+
+	<input class="btn btn-success" type="submit" value="SAVE"/>
+  
+
+
+</form>
+
+{% endblock %}

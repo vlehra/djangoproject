@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{%block title %} Stock-Swastik {% endblock %} 
+{% load urlify %}
+
+{% block content %}
+ <center><h1>Stocks !!!</h1><br/></center>
+
+ 
+ {% for stocks in stock.all %}
+ <div class="row pt-3">
+  <div class="col -1">
+
+  		<h3>{{ stocks.id }}</h3>
+
+  	</div>
+  	<div class="col-2">
+  		<h3>{{ stocks.item }}</h3>
+  		<p>{{ stocks.summary }}</p>
+
+  	</div>
+
+  	<div class="col -1">
+
+  		<h3>{{ stocks.qty }}kg/l</h3>
+
+  	</div>
+
+  	<div class="col -1">
+
+  		<h3>₹{{ stocks.rate }}</h3>
+
+  	</div>
+    <div class="col -2">
+
+      
+         <h3>{% multiply stocks.rate  stocks.qty %}</h3> 
+    </div>
+    <div class="col -2">
+
+      <h3>{{ stocks.date }}</h3>
+
+    </div>
+
+    
+    <div class="col -2">
+      <a href="{{stocks.id}}/delete/"><button type="button" class="btn btn-outline-danger">Delete</button></a>
+    </div>
+
+
+ </div>
+ 
+ {% endfor %}
+
+  		
+<button type="button" class="btn btn-outline-primary"><a href="{% url 'add_stocks' %}"><i class="fa fa-plus"></i> ADD</a></button>
+
+
+{% endblock %}

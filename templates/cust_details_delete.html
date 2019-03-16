@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+ <div class='details'>
+            Bill to:  {{ object.name }} <br/>
+            Oder:     {{ object.particular }} <br/>
+            Qty:      {{ object.qty }} <br/>
+            Rate:  {{ object.rate }} / plate<br/>
+            Amount Paid:  {{ object.amount_paid }}<br/>
+
+            Date: {{ object.date_cust }}<br/>
+            Address:  {{ object.address }} <br/>
+            Mobile No. :  {{ object.mobile_number }} <br/>
+            Gym :  {{ object.gym }} <br/>
+            Summary :  {{ object.summary }} <br/>
+            <hr class='hrItem' />
+        </div>
+
+
+
+
+
+<form action="." method="POST">{% csrf_token %}
+  
+ <button type="submit"  value="Yes" class="btn btn-outline-danger">DELETE</button>    <a href="{% url 'customers' %}{{ object.id }}/pdf"><button type="button" class="btn btn-outline-success">bill print</button></a>
+
+
+</form>
+
+
+{% endblock 
+      

@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{%block title %} Customers Details-Swastik {% endblock %} 
+{% load urlify %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <div class="row">
+        <div style="color: blue">
+          
+            <h1>{{ object.name }}</h1>
+            {% if object.male is True %}
+            <h2>Gender: Male</h2>
+            {% elif object.female is True  %}
+            <h2> Gender: Female </h2>
+            {% else %}
+            <h2> Gender: other</h2>
+            {% endif %}
+            <h2>{{ object.mobile_number }}</h2>
+            <h5>GYM: {{ object.gym }}</h5>
+            <h6>ADDRESS:<br/> {{ object.address }}</h6>
+
+          </div>
+        </div>
+      </div><br/>
+      
+
+    <div class ="col-md-5">
+      <div style="text-align:right; width:100%; padding:0;">
+
+      <form method="POST"  action="{{ get_absolute_url }}" >
+      {% csrf_token %}
+      {{ error }}
+      {{ form|crispy }}
+ 
+
+  
+
+      <input class="btn btn-success" type="submit" value="SAVE"/>
+  
+
+
+      </form>
+    </div>
+    </div>
+  </div>
+</div>
+<div style="text-align:left; width:100%; padding:0;">
+<br/>
+{% for i in ob reversed %} 
+   
+  {% if  i.mobile_number == object.mobile_number %}
+    <h6>{{ i.date_cust }}</h6>
+
+<div class="container">
+  <div class="row">
+    <div class="col"><td>ORDER:       </td>
+              <td>{% for area in i.particular.all %}{{ area }}<br/>{% endfor %}</td></div>
+    <div class="col"><td>Qty:    </td>
+              <td>{{ i.qty }}</td></div>
+    <div class="w-100"></div>
+    <div class="col"><td>RATE:    </td>
+              <td>{% multiply i.total  i.qty %}</td></div>
+    <div class="col"><td>PAID AMOUNT:      </td>
+              <td>{{ i.amount_paid }}</td></div>
+  </div>
+</div>
+ <div class="w-100"></div>
+  <div class="col"><td>Summary:     </td>
+              <td>{{ i.summary }}</td>
+            </div>
+              
+
+                        <br/><br/><br/>
+<p align="right">
+<a href="{{ i.delete_cust_det }}"><button type="button" class="btn btn-outline-danger">Delete</button></a>
+<a href="{{ i.get_pdf_bill }}"><button type="button" class="btn btn-outline-secondary">PRINT BILL</button></a>
+ </p>
+ <br/><br/><br/>
+
+
+ {% endif %}
+ {% endfor %}
+ 
+
+<br/><br/><br/><br/>
+
+
+<h6>{{ object.date_cust }}</h6>     
+
+ <div class="container">
+  <div class="row">
+    <div class="col"><td>ORDER:       </td>
+              <td>{% for area in object.order.all %}{{ area }}<br/>{% endfor %}</td></div>
+    <div class="col"><td>Qty:    </td>
+              <td>{{ object.qty }}</td></div>
+    <div class="w-100"></div>
+    <div class="col"><td>RATE:    </td>
+              <td>{% multiply object.total  object.qty %}</td></div>
+    <div class="col"><td>PAID AMOUNT:      </td>
+              <td>{{ object.amount_paid }}</td></div>
+  </div>
+</div>
+ <div class="w-100"></div>
+    <div class="col"><td>Summary:     </td>
+              <td>{{ object.summary }}</td></div>
+              
+
+          
+<br/><br/><br/>
+<p align="right">
+
+
+<a href="{{ object.get_pdf }}"><button type="button" class="btn btn-outline-secondary">PRINT BILL</button></a>
+ </p>
+ <br/><br/><br/>
+
+
+</div>
+</div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,57 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #7CFC00;">
+
+  <a href="{% url 'home' %}"><img src="" class="navbar-img" alt="..." height="40" width="65" float= "left" background= "mr-auto"></a>
+  <a class="navbar-brand" href="{% url 'home' %}">Swastik |</a>
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+   
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+    {% if user.is_authenticated %}
+
+      <li class="nav-item">
+    
+
+        <a class="nav-link" href="{% url 'particulars' %}">Menu |</a>
+     </li>
+     <li>
+        <a class="nav-link" href="{% url 'stocks' %}">Stocks |</a>
+    </li>
+    <li>
+        <a class="nav-link" href="{% url 'customers' %}">Customer |</a>
+
+
+        
+      </li>
+
+     <li>
+        <a class="nav-link" href="#">Sales |</a>
+
+
+        
+      </li>
+      
+     
+     
+    </ul>
+    
+    
+
+    <a class="nav-item nav-link" href="Javascript:{document.getElementById('logout').submit()}">Logout</a>
+     <form id= "logout" method="POST" action="{% url 'logout' %}">
+       {% csrf_token %}
+       <input type="hidden"/>
+     </form>
+    {% else %}
+
+     
+     <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+    {% endif %}
+  </div>
+</nav>
+
+<nav class="navbar navbar-dark bg-dark"> </nav>
