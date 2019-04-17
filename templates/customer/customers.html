@@ -1,19 +1,40 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {%block title %} Customers-Swastik {% endblock %} 
 {% block content %}
- <center><h1>CUSTOMERS !!!</h1><br/></center>
+ <center><h1>CUSTOMERS </h1><br/></center>
 
  <!DOCTYPE html>
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <style >
+        body{
+            background-image: url("{% static 'images/bg1.jpg' %}");
+            background-attachment: fixed;
+            
+            
+        }
+        h1{
+            color:  rgb(132, 0, 255);
+        }
+        .container{
+            color: blue;
+        }
+        p{
+            color: blue;
+        }
+
+    </style>
+    
+
 </head>
 <body>
 
 
 
-<div class="container">
+<div class="heading">
 <h1>Search Customer's Information: </h1><br/><br/>
 <p align="right">
 <a href="{% url 'add_customers' %}"><button type="button" class="btn btn-outline-success">ADD NEW CUSTOMERS</button></a>
