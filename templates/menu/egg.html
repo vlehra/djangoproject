@@ -3,7 +3,12 @@
 
 
 {% block content %}
+
  <center><h1>Egg Menu </h1><br/></center>
+ <br/>
+ {% include 'menu/menu_nav.html' %}
+ <br/>
+ 
  {% for stocks in products.all %}
  {% if stocks.egg == True %}
 

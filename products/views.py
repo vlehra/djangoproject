@@ -10,11 +10,7 @@ from .models import Menu
 
 @login_required
 
-def particulars(request):
 
-	products = Menu.objects
-
-	return render(request, 'menu/particulars.html', {'products': products})
 
 
 def veg(request):
